@@ -25,6 +25,28 @@ $(window).load(function() {
 $(document).ready(function() {
 
     'use strict';
+    $('img').on('dragstart', function(event) {
+        event.preventDefault();
+    });
+    if (window.location.pathname.toLowerCase().indexOf('portfolio.html') !== -1) {
+        $(document).on('contextmenu', function(event) {
+            event.preventDefault();
+        });
+    }
+    $(document).on('mousedown', 'img', function(event) {
+        if (event.which === 2) {
+            event.preventDefault();
+        }
+    });
+    $(document).on('auxclick', 'img', function(event) {
+        event.preventDefault();
+    });
+    $(document).on('click', 'a:has(img)', function(event) {
+        var modifierUsed = event.ctrlKey || event.metaKey || event.shiftKey || event.which === 2;
+        if (modifierUsed) {
+            event.preventDefault();
+        }
+    });
     /* ==============================================
      /*   wow
       =============================================== */
